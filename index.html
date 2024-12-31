@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positive Motivation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+        }
+        .motivational-quote {
+            font-size: 1.5rem;
+            margin: 20px;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="motivational-quote" id="quote-display">
+        Click the button to get motivated!
+    </div>
+    <button class="button" onclick="showRandomQuote()">Show Motivation</button>
+
+    <script>
+        const quotes = [
+            "Believe in yourself and all that you are.",
+            "Every day is a new beginning. Take a deep breath, smile, and start again.",
+            "You are stronger than you think.",
+            "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+            "Your limitation—it’s only your imagination.",
+            "Push yourself, because no one else is going to do it for you.",
+            "Dream it. Wish it. Do it.",
+            "Success doesn’t just find you. You have to go out and get it.",
+            "The harder you work for something, the greater you’ll feel when you achieve it.",
+            "Dream bigger. Do bigger.",
+            "Don’t stop when you’re tired. Stop when you’re done.",
+            "Wake up with determination. Go to bed with satisfaction.",
+            "Little things make big days.",
+            "It’s going to be hard, but hard does not mean impossible.",
+            "Don’t wait for opportunity. Create it.",
+            "Sometimes we’re tested not to show our weaknesses, but to discover our strengths.",
+            "The key to success is to focus on goals, not obstacles.",
+            "Dream it, believe it, build it.",
+            "Act as if what you do makes a difference. It does.",
+            "Success is not how high you have climbed, but how you make a positive difference to the world.",
+            "You make a life out of what you have, not what you’re missing.",
+            "Hardships often prepare ordinary people for an extraordinary destiny.",
+            "Believe you can and you’re halfway there.",
+            "It always seems impossible until it’s done.",
+            "With the new day comes new strength and new thoughts.",
+            "You are never too old to set another goal or to dream a new dream.",
+            "Don’t watch the clock; do what it does. Keep going.",
+            "Keep your face always toward the sunshine—and shadows will fall behind you.",
+            "The only way to achieve the impossible is to believe it is possible.",
+            "The harder the struggle, the more glorious the triumph.",
+            "Keep your dreams alive. Understand to achieve anything requires faith and belief in yourself, vision, hard work, determination, and dedication.",
+            "When you have a dream, you’ve got to grab it and never let go.",
+            "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+            "The only limit to our realization of tomorrow will be our doubts of today.",
+            "Perseverance is not a long race; it is many short races one after the other.",
+            "You can’t go back and change the beginning, but you can start where you are and change the ending.",
+            "Happiness is not something ready-made. It comes from your own actions.",
+            "Start where you are. Use what you have. Do what you can.",
+            "Success usually comes to those who are too busy to be looking for it.",
+            "Courage is resistance to fear, mastery of fear—not absence of fear.",
+            "The best way to predict the future is to create it.",
+            "Don’t limit your challenges. Challenge your limits.",
+            "You are capable of amazing things.",
+            "Stay positive, work hard, and make it happen.",
+            "Believe you deserve it and the universe will serve it.",
+            "Opportunities don’t happen. You create them.",
+            "Failure is the condiment that gives success its flavor.",
+            "Turn your wounds into wisdom.",
+            "The future depends on what you do today.",
+            "Believe in your infinite potential. Your only limitations are those you set upon yourself.",
+            "It does not matter how slowly you go as long as you do not stop.",
+            "The struggle you’re in today is developing the strength you need for tomorrow.",
+            "Be yourself; everyone else is already taken.",
+            "Don’t let what you cannot do interfere with what you can do.",
+            "You don’t have to be perfect to be amazing.",
+            "The best view comes after the hardest climb.",
+            "Do what you can with all you have, wherever you are.",
+            "Start where you are. Use what you have. Do what you can.",
+            "The best way out is always through.",
+            "Aim for the moon. If you miss, you may hit a star.",
+            "You are never too old to set another goal or to dream a new dream.",
+            "Work hard, stay consistent, and be patient.",
+            "The way to get started is to quit talking and begin doing.",
+            "Don’t be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+            "Motivation is what gets you started. Habit is what keeps you going.",
+            "You don’t need to see the whole staircase, just take the first step.",
+            "Hardships often prepare ordinary people for an extraordinary destiny.",
+            "No matter how hard it is, just keep going because you only fail when you give up.",
+            "The secret of getting ahead is getting started.",
+            "Start each day with a positive thought and a grateful heart.",
+            "You have to fight through some bad days to earn the best days of your life.",
+            "It’s not about being the best. It’s about being better than you were yesterday.",
+            "Do not wait to strike till the iron is hot; but make it hot by striking.",
+            "Keep going. Everything you need will come to you at the perfect time.",
+            "The pain you feel today will be the strength you feel tomorrow.",
+            "Success is the sum of small efforts, repeated day in and day out.",
+            "Keep your head high, and your heart strong.",
+            "Believe in your dreams and they may come true; believe in yourself and they will come true.",
+            "Focus on the step in front of you, not the whole staircase.",
+            "Don’t be afraid to give up the good to go for the great.",
+            "The best time to plant a tree was 20 years ago. The second best time is now.",
+            "Fall seven times, stand up eight.",
+            "The only way to do great work is to love what you do.",
+            "Happiness is not by chance, but by choice.",
+            "Nothing is impossible. The word itself says ‘I’m possible!’",
+            "You are capable of amazing things.",
+            "The difference between ordinary and extraordinary is that little extra.",
+            "Don’t let the fear of losing be greater than the excitement of winning.",
+            "You are enough just as you are.",
+            "Don’t give up because you had a bad day. Forgive yourself and do better tomorrow.",
+            "Life isn’t about waiting for the storm to pass; it’s about learning to dance in the rain."
+        ];
+
+        function showRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById("quote-display").innerText = quotes[randomIndex];
+        }
+    </script>
+</body>
+</html>
